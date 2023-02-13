@@ -8,12 +8,4 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
   ],
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@import "src/scss/global.scss";',
-      },
-    }
-  },
 });

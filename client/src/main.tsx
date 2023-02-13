@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from 'app';
-import './scss/main.scss';
+import { RouterProvider } from 'react-router-dom';
+import router from 'navigation/router';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from 'theme/theme';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>,
 );
