@@ -1,7 +1,7 @@
 # React CRUD App
 
 ## System requirements
-Node.js v15.* or above
+[Node.js](https://nodejs.org/en/) v15.* or above
 
 To view applications, you must launch server and client apps.
 Make sure you louched server application first, only then Client.
@@ -10,17 +10,15 @@ Make sure you louched server application first, only then Client.
 <div style="padding-left: 40px">
 
 ### Installation
+Open terminal in __./server__ folder and run 
 ```
-npm i
+npm install
 ```
 
 ### Lounch for development
+Open terminal in __./server__ folder and run 
 ```
-npm server
-```
-### Lounch for production
-```
-npm server
+npm run server
 ```
 </div>
 
@@ -29,19 +27,24 @@ npm server
 <div style="padding-left: 40px">
 
 ### Installation
+Open terminal in __./client__ folder and run 
 ```
-npm i
+npm install
 ```
 
 ### Lounch for development
+Open terminal in __./client__ folder and run 
 ```
 npm start
 ```
 ### Lounch for production
 ```
-npm build
+npm run build
 ```
 </div>
 
 ## View Code
-https://github.dev/PavFet/react-crud.git
+***
+Repository ***[link](https://github.dev/PavFet/react-crud.git)***
+
+***

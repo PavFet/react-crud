@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import NavbarLayout from 'components/layout/navbar-layout';
 import HomePage from 'pages/home-page';
+import CarListPage from 'pages/cars-list-page';
 import routes from './routes';
 
 const router = createBrowserRouter([
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: routes.HomePage,
         element: <HomePage />,
+      },
+      {
+        path: routes.CarListPage,
+        element: <CarListPage />,
       },
     ],
   },
