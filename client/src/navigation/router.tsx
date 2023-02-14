@@ -1,8 +1,9 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import NavbarLayout from 'components/layout/navbar-layout';
-import HomePage from 'pages/home-page';
+import HomePage from 'pages/home-page/home-page';
 import CarListPage from 'pages/cars-list-page/index';
+import CarPage from 'pages/car-page';
 import routes from './routes';
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: routes.CarListPage,
         element: <CarListPage />,
+      },
+      {
+        path: routes.CarPage.routerPath,
+        element: <CarPage />,
       },
     ],
   },

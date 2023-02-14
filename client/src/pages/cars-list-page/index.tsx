@@ -16,7 +16,15 @@ const CarListPage = () => {
 
   return (
     <Styled.CarsListPageGrid>
-      {carsData.map((car) => <CarCard images={[car.images[0]]} name={car.name} year={car.year} />)}
+      {carsData.map((car) => (
+        <CarCard
+          key={car.id}
+          id={car.id}
+          images={[car.images[0]]}
+          name={car.name}
+          year={car.year}
+        />
+      ))}
     </Styled.CarsListPageGrid>
   );
 };

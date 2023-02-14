@@ -14,8 +14,14 @@ const fetchCars = async () => {
   return carsData;
 };
 
+const fetchCar = async (id: string | number) => {
+  const { data: carData } = await api.get<CarModel>(`/cars/${id}`);
+  return carData;
+};
+
 const ApiService = {
   fetchCars,
+  fetchCar,
 };
 
 export default ApiService;
