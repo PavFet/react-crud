@@ -1,5 +1,5 @@
 type CarModel = {
-  'id': string,
+  'id'?: string,
   'name': string,
   'technical_characteristics': {
     'miles_per_gallon': number,

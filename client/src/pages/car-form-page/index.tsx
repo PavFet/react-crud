@@ -1,46 +1,82 @@
 import {
-  Box, IconButton, Paper, TextField,
+  Button, Paper, Select, Stack, TextField, MenuItem, InputLabel,
 } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useNavigate } from 'react-router-dom';
+import routes from 'navigation/routes';
 import * as Styled from './styled';
-import TextFieldImages from './text-field-images';
+import ImagesField from './images-field';
+import ApiService from '../../../services/api-service';
 
 type CarFormPageProps = {
   mode?: 'create' | 'edit',
 };
 
-const CarFormPage: React.FC<CarFormPageProps> = () => (
-  <Paper
-    component="form"
-    sx={{
-      width: {
-        sx: 300, md: 600, lg: 900, xl: 1200,
+const CarFormPage: React.FC<CarFormPageProps> = () => {
+  const navigate = useNavigate();
+  const formRef = React.useRef(null);
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    if (formRef.current === null) return;
+    const formData = new FormData(formRef.current);
+    const values = {
+      name: formData.get('title'),
+      technical_characteristics: {
+        miles_per_gallon: formData.get('miles-per-gallon'),
+        cylinders: formData.get('cylinders'),
+        displacement: formData.get('displacement'),
+        horsepower: formData.get('horsepower'),
+        weight_in_lbs: formData.get('weight'),
+        acceleration: formData.get('acceleration'),
       },
-    }}
-  >
-    <Typography variant="h4" sx={{ p: 2 }} textAlign="center">Create car card</Typography>
-    <Box sx={{ p: 3 }}>
-      <TextField sx={{ width: 1 }} id="title" label="Title" variant="filled" required />
-      <TextField sx={{ width: 1, py: 2 }} id="year" label="Year" variant="filled" required type="number" InputProps={{ inputProps: { min: 1960, max: 1979 } }} />
-      <TextField sx={{ width: 1 }} id="origin" label="Country of origin" variant="filled" required />
-      <Typography sx={{ mt: 2 }}>Technical characteristics</Typography>
-      <Styled.TechnicalCharacteristicsGrid>
-        <TextField id="miles-per-gallon" label="Miles per gallon" variant="filled" required type="number" />
-        <TextField id="cylinders" label="Cylinders" variant="filled" required type="number" InputProps={{ inputProps: { min: 4, max: 12 } }} />
-        <TextField id="displacement" label="Displacement" variant="filled" required type="number" />
-        <TextField id="horsepower" label="Horsepower" variant="filled" required type="number" />
-        <TextField id="weight" label="Weight(lbs)" variant="filled" required type="number" />
-        <TextField id="acceleration" label="Acceleration(sec)" variant="filled" required type="number" />
-      </Styled.TechnicalCharacteristicsGrid>
-      <Typography sx={{ mt: 2 }}>Images</Typography>
-      <TextFieldImages />
-      <IconButton color="success">
-        <AddCircleOutlineIcon />
-      </IconButton>
-    </Box>
-  </Paper>
-);
+      year: formData.get('year'),
+      origin: formData.get('origin'),
+      images: formData.getAll('images'),
+    };
+
+    ApiService.postNewCarCard(values);
+    navigate(routes.CarListPage);
+  };
+
+  return (
+    <Paper
+      component="form"
+      onSubmit={handleSubmit}
+      ref={formRef}
+      sx={{
+        width: {
+          sx: 300, md: 600, lg: 900, xl: 1200,
+        },
+      }}
+    >
+      <Typography variant="h4" sx={{ p: 2 }} textAlign="center">Create car card</Typography>
+      <Stack sx={{ p: 3, display: 'flex' }}>
+        <TextField sx={{ width: 1 }} id="title" label="Name" variant="filled" name="title" required />
+        <TextField sx={{ width: 1, py: 2 }} id="year" label="Year" name="year" variant="filled" required type="number" InputProps={{ inputProps: { min: 1960, max: 1979 } }} />
+        <InputLabel>Country of origin</InputLabel>
+        <Select defaultValue="" sx={{ width: 1 }} id="origin" name="origin" required>
+          <MenuItem value="EU">EU</MenuItem>
+          <MenuItem value="USA">USA</MenuItem>
+          <MenuItem value={undefined}>None</MenuItem>
+        </Select>
+        <Typography sx={{ mt: 2 }}>Technical characteristics</Typography>
+        <Styled.TechnicalCharacteristicsGrid>
+          <TextField id="miles-per-gallon" name="miles-per-gallon" label="Miles per gallon" variant="filled" required type="number" />
+          <TextField id="cylinders" name="cylinders" label="Cylinders" variant="filled" required type="number" InputProps={{ inputProps: { min: 4, max: 12 } }} />
+          <TextField id="displacement" name="displacement" label="Displacement" variant="filled" required type="number" />
+          <TextField id="horsepower" name="horsepower" label="Horsepower" variant="filled" required type="number" />
+          <TextField id="weight" name="weight" label="Weight(lbs)" variant="filled" required type="number" />
+          <TextField id="acceleration" name="acceleration" label="Acceleration(sec)" variant="filled" required type="number" />
+        </Styled.TechnicalCharacteristicsGrid>
+        <Typography sx={{ mt: 2 }}>Images</Typography>
+        <ImagesField />
+        <Button type="submit" color="primary" variant="contained" size="large" sx={{ m: 'auto' }}>
+          Create
+        </Button>
+      </Stack>
+    </Paper>
+  );
+};
 
 export default CarFormPage;
