@@ -40,7 +40,7 @@ const CarCard: React.FC<CarCardProps> = ({
           <Typography component="h2" sx={{ fontWeight: 600, fontSize: '1.2rem', color: 'primary.main' }}>
             {name.toUpperCase()}
           </Typography>
-          <Typography component="h3" sx={{ fontWeight: 500, fontSize: '1.1rem', color: 'grey.600' }}>
+          <Typography component="h3" sx={{ fontWeight: 500, fontSize: '1.0rem', color: 'grey.600' }}>
             {year}
           </Typography>
         </Box>
