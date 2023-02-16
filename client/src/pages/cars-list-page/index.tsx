@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiService from '../../../services/api-service';
 import CarCard from './car-card';
+import CreateCarCard from './create-car-card';
 import * as Styled from './styled';
 
 const CarListPage = () => {
@@ -15,17 +16,20 @@ const CarListPage = () => {
   }, []);
 
   return (
-    <Styled.CarsListPageGrid>
-      {carsData.map((car) => (
-        <CarCard
-          key={car.id}
-          id={car.id}
-          images={[car.images[0]]}
-          name={car.name}
-          year={car.year}
-        />
-      ))}
-    </Styled.CarsListPageGrid>
+    <>
+      <CreateCarCard />
+      <Styled.CarsListPageGrid>
+        {carsData.map((car) => (
+          <CarCard
+            key={car.id}
+            id={car.id}
+            images={[car.images[0]]}
+            name={car.name}
+            year={car.year}
+          />
+        ))}
+      </Styled.CarsListPageGrid>
+    </>
   );
 };
 

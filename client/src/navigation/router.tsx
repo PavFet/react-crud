@@ -4,6 +4,7 @@ import NavbarLayout from 'components/layout/navbar-layout';
 import HomePage from 'pages/home-page/home-page';
 import CarListPage from 'pages/cars-list-page/index';
 import CarPage from 'pages/car-page';
+import CarFormPage from 'pages/car-form-page';
 import routes from './routes';
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: routes.CarPage.routerPath,
         element: <CarPage />,
+      },
+      {
+        path: routes.CarCreatePage,
+        element: <CarFormPage mode="create" />,
       },
     ],
   },

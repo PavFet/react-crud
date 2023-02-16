@@ -4,9 +4,7 @@ export const CarsListPageGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(1, 1fr)',
   gap: theme.spacing(2),
-  padding: theme.spacing(2),
   maxWidth: theme.breakpoints.values.xl,
-  margin: 'auto',
   [theme.breakpoints.up('sm')]: {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
@@ -32,4 +30,12 @@ export const ButtonContainer = styled(Box)(({ theme }) => ({
   '&>*': {
     flexGrow: 1,
   },
+}));
+
+export const CarCardActions = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: theme.spacing(1),
+  right: theme.spacing(1),
+  display: 'flex',
+  gap: 3,
 }));

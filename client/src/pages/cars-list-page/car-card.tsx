@@ -4,6 +4,7 @@ import {
 import Stack from '@mui/material/Stack/Stack';
 import Img from 'components/layout/ui/img';
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useNavigate } from 'react-router-dom';
 import routes from 'navigation/routes';
@@ -22,7 +23,11 @@ const CarCard: React.FC<CarCardProps> = ({
   console.log(favorite);
 
   return (
-    <Stack sx={{ boxShadow: 3 }}>
+    <Stack sx={{ boxShadow: 3, position: 'relative' }}>
+      <Styled.CarCardActions>
+        <Button variant="contained" color="warning" size="small">update</Button>
+        <Button variant="contained" color="error" size="small"><DeleteIcon /></Button>
+      </Styled.CarCardActions>
       <Img src={images[0]} alt={name} sx={{ aspectRatio: '1.42', width: 1 }} />
       <Styled.ContentWrapper>
         <Box sx={{ float: 'right', textAlign: 'right', flexGrow: 1 }}>
