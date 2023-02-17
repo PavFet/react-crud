@@ -49,7 +49,9 @@ const CarFormPage: React.FC<CarFormPageProps> = ({
       console.log('Daromas sukurimas');
     }
     if (mode === 'update') {
-      console.log('daromas upadatas id', id);
+      ApiService.updateCarCard(car.id, values);
+
+      navigate(routes.CarListPage);
     }
   };
 

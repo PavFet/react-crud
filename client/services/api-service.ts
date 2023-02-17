@@ -56,11 +56,27 @@ const deleteCarCard = async (id: string) => {
   }
 };
 
+const updateCarCard = async (id: string, props: CarModel) => {
+  try {
+    const response = await fetch(`http://localhost:5009/cars/${id}`, {
+      ...requestSettings,
+      method: 'PATCH',
+      body: JSON.stringify(props),
+    });
+    if (response.status === 404) {
+      throw new Error('Failed to Update  CarCard');
+    }
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
 const ApiService = {
   fetchCars,
   fetchCar,
   postNewCarCard,
   deleteCarCard,
+  updateCarCard,
 };
 
 export default ApiService;
