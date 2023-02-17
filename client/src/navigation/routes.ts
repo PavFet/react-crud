@@ -1,4 +1,5 @@
 const CarPageUrl = '/car-page/' as const;
+const CarUpdtePage = '/car-update-page/' as const;
 
 const routes = {
   HomePage: '/',
@@ -6,6 +7,10 @@ const routes = {
   CarPage: {
     routerPath: `${CarPageUrl}:id`,
     createLink: (id: string | number) => `${CarPageUrl}${id}`,
+  },
+  CarUpdatePage: {
+    routerPath: `${CarUpdtePage}:id`,
+    createLink: (id: string | number) => `${CarUpdtePage}${id}`,
   },
   CarCreatePage: '/car-create-page',
 } as const;

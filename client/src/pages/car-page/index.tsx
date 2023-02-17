@@ -1,28 +1,20 @@
 import { Box } from '@mui/material';
+import useCar from 'hooks/useCar';
 import routes from 'navigation/routes';
 import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import ApiService from '../../../services/api-service';
 import CarPageContent from './car-page-content';
 import CarPageSwiper from './car-page-swiper';
 import * as Styled from './styled';
 
 const CarPage = () => {
   const { id } = useParams();
-  const [car, setCar] = React.useState<CarModel | undefined>(undefined);
-
-  React.useEffect(() => {
-    if (id !== undefined) {
-      (async () => {
-        const fetchedCar = await ApiService.fetchCar(id);
-        setCar(fetchedCar);
-      })();
-    }
-  }, [id]);
+  const car = useCar(id);
 
   if (id === undefined) {
     return <Navigate to={routes.HomePage} />;
   }
+
   return (
     <Styled.CarPageFlex>
       <Box>

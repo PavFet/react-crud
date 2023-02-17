@@ -7,6 +7,12 @@ import * as Styled from './styled';
 const CarListPage = () => {
   const [carsData, setCarsData] = React.useState<CarModel[]>([]);
 
+  const onDelete = async (id: string | undefined) => {
+    await ApiService.deleteCarCard(id);
+    const fetchedCars = await ApiService.fetchCars();
+    setCarsData(fetchedCars);
+  };
+
   React.useEffect(() => {
     const fetchedCars = async () => {
       const result = await ApiService.fetchCars();
@@ -26,6 +32,7 @@ const CarListPage = () => {
             images={[car.images[0]]}
             name={car.name}
             year={car.year}
+            onDelete={() => onDelete(car.id)}
           />
         ))}
       </Styled.CarsListPageGrid>

@@ -265,6 +265,23 @@
         "https://cdn.dealeraccelerate.com/stlouis/1/82/20835/1920x1440/1970-jaguar-e-type-series-ii"
       ],
       "id": "nZ-8yok"
+    },
+    {
+      "name": "asga",
+      "technical_characteristics": {
+        "miles_per_gallon": "12",
+        "cylinders": "12",
+        "displacement": "12",
+        "horsepower": "12",
+        "weight_in_lbs": "12",
+        "acceleration": "12"
+      },
+      "year": "1960",
+      "origin": "USA",
+      "images": [
+        "https://assets.rebelmouse.io/media-library/image.jpg?id=31601350&width=1200&height=800&quality=90&coordinates=183%2C0%2C184%2C0"
+      ],
+      "id": "qu_Uxkz"
     }
   ]
 }

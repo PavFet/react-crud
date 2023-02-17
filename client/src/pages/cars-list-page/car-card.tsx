@@ -9,30 +9,27 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useNavigate } from 'react-router-dom';
 import routes from 'navigation/routes';
 import * as Styled from './styled';
-import ApiService from '../../../services/api-service';
 
-type CarCardProps = Pick<CarModel, 'images' | 'name' | 'year' | 'id'>;
+type CarCardProps = Pick<CarModel, 'images' | 'name' | 'year' | 'id'> & {
+  onDelete: VoidFunction
+};
 
 const CarCard: React.FC<CarCardProps> = ({
   id,
   images,
   name,
   year,
+  onDelete,
 }) => {
   const navigate = useNavigate();
   React.useEffect(() => {
   });
 
-  const handleDelete = () => {
-    ApiService.deleteCarCard(id);
-    window.location.reload();
-  };
-
   return (
     <Stack sx={{ boxShadow: 3, position: 'relative' }}>
       <Styled.CarCardActions>
-        <Button variant="contained" color="warning" size="small">update</Button>
-        <Button onClick={handleDelete} variant="contained" color="error" size="small"><DeleteIcon /></Button>
+        <Button variant="contained" color="warning" size="small" onClick={() => navigate(routes.CarUpdatePage.createLink(id))}>update</Button>
+        <Button onClick={onDelete} variant="contained" color="error" size="small"><DeleteIcon /></Button>
       </Styled.CarCardActions>
       <Img src={images[0]} alt={name} sx={{ aspectRatio: '1.42', width: 1 }} />
       <Styled.ContentWrapper>
